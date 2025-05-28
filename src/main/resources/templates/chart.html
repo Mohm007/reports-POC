@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Devices Report</title>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .chart-container {
+            margin: 30px 0;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        .table, .table th, .table td {
+            border: 1px solid black;
+        }
+        .table th, .table td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Network Devices Report</h1>
+
+    <!-- Table -->
+    <h2>Device Information</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Hostname</th>
+            <th>Site</th>
+            <th>Building</th>
+            <th>MAC Address</th>
+            <th>Model</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="device : ${devices}">
+            <td th:text="${device.hostname}"></td>
+            <td th:text="${device.site}"></td>
+            <td th:text="${device.building}"></td>
+            <td th:text="${device.macAddress}"></td>
+            <td th:text="${device.model}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Pie Chart -->
+    <div class="chart-container">
+        <h2>Device Distribution by Site</h2>
+        <div id="pieChart" style="height: 400px;"></div>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var deviceCounts = /*[[${deviceCounts}]]*/ [];
+
+            Highcharts.chart('pieChart', {
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Device Distribution by Site'
+                },
+                series: [{
+                    name: 'Devices',
+                    colorByPoint: true,
+                    data: deviceCounts
+                }]
+            });
+            /*]]>*/
+        </script>
+    </div>
+
+    <!-- Bar Chart -->
+    <div class="chart-container">
+        <h2>Device Models Count</h2>
+        <div id="barChart" style="height: 400px;"></div>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var deviceModels = /*[[${deviceModels}]]*/ [];
+
+            Highcharts.chart('barChart', {
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: 'Device Models Count'
+                },
+                xAxis: {
+                    categories: deviceModels.map(function(entry) { return entry.key; }),
+                    title: {
+                        text: 'Model'
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Device Count'
+                    }
+                },
+                series: [{
+                    name: 'Devices',
+                    data: deviceModels.map(function(entry) { return entry.value; })
+                }]
+            });
+            /*]]>*/
+        </script>
+    </div>
+
+    <!-- Line Chart -->
+    <div class="chart-container">
+        <h2>Device Count by Site (Line Chart)</h2>
+        <div id="lineChart" style="height: 400px;"></div>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var lineChartData = /*[[${lineChartData}]]*/ [];
+
+            Highcharts.chart('lineChart', {
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Device Count by Site'
+                },
+                xAxis: {
+                    categories: lineChartData.map(function(entry) { return entry.site; }),
+                    title: {
+                        text: 'Site'
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Device Count'
+                    }
+                },
+                series: [{
+                    name: 'Devices',
+                    data: lineChartData.map(function(entry) { return entry.count; })
+                }]
+            });
+            /*]]>*/
+        </script>
+    </div>
+
+</div>
+
+</body>
+</html>

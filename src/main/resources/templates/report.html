@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Network Devices Report</title>
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" type="text/css" href="src/main/resources/static/css/style.css" />
+</head>
+<body>
+
+<div class="header">
+    <img class="logo" src="https://yourstrategic.imgix.net/2017/04/Extreme-Networks-Logo.png?fm=png&amp;ixlib=php-3.3.1.png" alt="Logo" />
+    <h1 class="title">Network Devices Report</h1>
+</div>
+
+
+<!-- Table Section -->
+<table class="table">
+    <thead>
+    <tr>
+        <th>Hostname</th>
+        <th>Site</th>
+        <th>Building</th>
+        <th>MAC Address</th>
+        <th>Model</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="device : ${devices}">
+        <td th:text="${device.hostname}">hostname</td>
+        <td th:text="${device.site}">site</td>
+        <td th:text="${device.building}">building</td>
+        <td th:text="${device.macAddress}">mac</td>
+        <td th:text="${device.model}">model</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin-bottom: 50px;  /* Ensure space for footer */
+}
+
+/* Table Styling */
+.table {
+    width: 100%;
+    border-collapse: collapse !important;
+    table-layout: fixed;
+    font-size: 14px;
+}
+
+.table, .table th, .table td {
+    border: 1px solid black !important;
+}
+
+/* Table Cell Styling */
+.table th, .table td {
+    padding: 8px;
+    text-align: left;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Header Styling */
+.header {
+    position: relative;
+    padding-top: 10px;
+    padding-right: 120px; /* Space for the logo on the right */
+    margin-bottom: 30px;
+}
+
+.title {
+    margin: 0;
+    font-size: 24px;
+    text-align: left;
+    padding-left: 0;
+    padding-right: 120px;
+}
+
+/* Logo in the top-right corner */
+.logo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 50px;
+    object-fit: contain;
+}
+
+/* Enforce equal column width */
+.table th, .table td {
+    width: 20%;
+}
+
+/* Prevent row break */
+.table tr {
+    page-break-inside: avoid;
+}
+
+/* Zebra striping for table rows */
+.table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #eaeaea;
+}
+
+/* Header row color */
+.table thead th {
+    background-color: #2f70c0;  /* You can change to #6c757d or any theme color */
+    color: white;
+    font-weight: bold;
+}
+
+/* Optional: Hover effect (for screen viewing) */
+.table tbody tr:hover {
+    background-color: #d6e4f0;
+}
+
+/* Footer Styling */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+}
+
+/* Print styles */
+@media print {
+    body {
+        margin-bottom: 60px;
+    }
+
+    .footer {
+        display: block;
+    }
+
+    .table tbody tr:hover {
+        background-color: inherit !important; /* Remove hover on print */
+    }
+}
+
+/* Page number content (for advanced PDF tools) */
+@page {
+    @bottom-center {
+        content: "Page " counter(page) " of " counter(pages);
+    }
+}
