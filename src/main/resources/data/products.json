@@ -1,0 +1,25 @@
+{
+  "title": "Top 20 Products by Units Sold",
+  "data": [
+    { "product": "Laptop", "units_sold": 320 },
+    { "product": "Smartphone", "units_sold": 450 },
+    { "product": "Tablet", "units_sold": 220 },
+    { "product": "Monitor", "units_sold": 150 },
+    { "product": "Keyboard", "units_sold": 180 },
+    { "product": "Mouse", "units_sold": 210 },
+    { "product": "Printer", "units_sold": 90 },
+    { "product": "Headphones", "units_sold": 300 },
+    { "product": "Smartwatch", "units_sold": 160 },
+    { "product": "Webcam", "units_sold": 75 },
+    { "product": "Speakers", "units_sold": 140 },
+    { "product": "External HDD", "units_sold": 110 },
+    { "product": "SSD", "units_sold": 195 },
+    { "product": "Graphics Card", "units_sold": 85 },
+    { "product": "Motherboard", "units_sold": 70 },
+    { "product": "Router", "units_sold": 125 },
+    { "product": "Microphone", "units_sold": 60 },
+    { "product": "Charger", "units_sold": 200 },
+    { "product": "Power Bank", "units_sold": 230 },
+    { "product": "VR Headset", "units_sold": 55 }
+  ]
+}

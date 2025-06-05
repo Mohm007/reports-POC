@@ -1,0 +1,17 @@
+{
+  "title": "Monthly Website Traffic",
+  "data": [
+    { "month": "Jan", "visitors": 1500 },
+    { "month": "Feb", "visitors": 1800 },
+    { "month": "Mar", "visitors": 2100 },
+    { "month": "Apr", "visitors": 2500 },
+    { "month": "May", "visitors": 3000 },
+    { "month": "Jun", "visitors": 2800 },
+    { "month": "Jul", "visitors": 3200 },
+    { "month": "Aug", "visitors": 3400 },
+    { "month": "Sep", "visitors": 3100 },
+    { "month": "Oct", "visitors": 3300 },
+    { "month": "Nov", "visitors": 3600 },
+    { "month": "Dec", "visitors": 4000 }
+  ]
+}
