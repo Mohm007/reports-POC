@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="${reportName}">Report</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm 2cm 3cm 2cm; /* extra bottom margin for footer */
+
+            @bottom-center {
+                content: "@2025 PoC Report";
+                font-size: 10px;
+                color: #666;
+                padding-bottom: 5px;
+            }
+
+            @bottom-right {
+                content: "Page " counter(page) " of " counter(pages);
+                font-size: 10px;
+                color: #555;
+                padding-bottom: 5px;
+            }
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 16px;
+            text-align: center;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: #333;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+
+            /* Avoid breaking titles between pages */
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        .metric-card {
+            margin-bottom: 60px; /* space to prevent footer overlap */
+            page-break-inside: avoid; /* avoid breaking the entire metric across pages */
+            break-inside: avoid;
+        }
+
+        .chart-container {
+            display: block;
+            margin: 20px auto;
+            max-width: 90%;
+            height: auto;
+
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        footer {
+            display: none; /* footer handled by @page margin boxes */
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 0 2cm;
+        }
+
+        .logo {
+            height: 50px;
+            display: block;
+        }
+
+        .report-header {
+            display: flex;
+            justify-content: space-between; /* Title left, logo right */
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .report-header h1 {
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .report-date {
+            text-align: left;
+            margin-left: 0;
+            padding-left: 10px;
+            font-size: 8px;
+            color: #555;
+        }
+
+        .report-intro {
+            margin: 30px 2cm;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #4a90e2;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <header class="report-header">
+        <img src="https://yourstrategic.imgix.net/2017/04/Extreme-Networks-Logo.png?fm=png&amp;ixlib=php-3.3.1.png" alt="Logo" class="logo" />
+        <h1 th:text="${reportName}">Dynamic Metric Report</h1>
+    </header>
+
+    <div class="report-date" th:text="'Report Generated Date: ' + ${reportDate}">Date</div>
+
+    <!-- Styled Introductory text -->
+    <div class="report-intro">
+        <div style="margin-bottom: 8px;"><strong> Report Overview:</strong></div>
+        <div> <strong>Thymeleaf</strong> is used to dynamically populate this HTML report.</div>
+        <div> <strong>Flying Saucer</strong> renders this HTML into a styled PDF.</div>
+        <div> <strong>Highcharts Export Server</strong> runs on a separate server to generate dynamic charts (Pie, Bar, Line) as images.</div>
+    </div>
+
+    <div th:each="metric : ${metrics}" class="metric-card">
+        <h3 th:text="${metric.title}">Metric Title</h3>
+
+        <div style="text-align: center;">
+            <img th:if="${metric.chartImageWebPath != null}" th:src="${metric.chartImageWebPath}" class="chart-container" />
+        </div>
+
+        <!-- TABULAR Data -->
+        <table th:if="${metric.chartType == 'TABULAR'}">
+            <thead>
+            <tr>
+                <th th:each="header : ${metric.headers}" th:text="${header}">Header</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="row : ${metric.data}">
+                <td th:each="cell : ${row}" th:text="${cell}">Cell</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<footer th:text="${footer}">@2025 PoC Report</footer>
+</body>
+</html>

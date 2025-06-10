@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  highcharts-export:
+    image: onsdigital/highcharts-export-node
+    container_name: highcharts-export
+    ports:
+      - "8889:8080"
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8888:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/html:/usr/share/nginx/html:ro
+    depends_on:
+      - highcharts-export

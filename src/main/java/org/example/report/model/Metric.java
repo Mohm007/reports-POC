@@ -23,6 +23,4 @@ public class Metric {
     private String chartImagePath;
     private String chartImageFileUri;
     private String chartImageWebPath;
-
-
 }
