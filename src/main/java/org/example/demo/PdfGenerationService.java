@@ -41,7 +41,7 @@ public class PdfGenerationService {
         int currentRow = 0;
 
         // Load logo image from the URL
-        URL logoUrl = new URL("https://yourstrategic.imgix.net/2017/04/Extreme-Networks-Logo.png?fm=png&ixlib=php-3.3.1.png");
+        URL logoUrl = new URL("https://www.google.com/imgres?q=wifi%20image&imgurl=https%3A%2F%2Fimages.ctfassets.net%2Faoyx73g9h2pg%2F6bjYp5iN3rqPeVqhgJkZ7C%2Fd6dc91b1f03a1f204e0a014ee594bf4e%2F1gOt7F1sy2USrKYc9QmEauPLV8H1kjVVL_2-Featured-1024x572.jpg%3Fw%3D3840%26q%3D100&imgrefurl=https%3A%2F%2Fwww.cbtnuggets.com%2Fblog%2Ftechnology%2Fnetworking%2Fare-wifi-extenders-worth-it&docid=SQinmIvd1CCwbM&tbnid=Enj-vz-YYYuz1M&vet=12ahUKEwi1oI7M-YKOAxUDlK8BHffIDBQQM3oECGYQAA..i&w=1024&h=572&hcb=2&ved=2ahUKEwi1oI7M-YKOAxUDlK8BHffIDBQQM3oECGYQAA");
         PDImageXObject logo = PDImageXObject.createFromFileByContent(new File(logoUrl.getFile()), document);
 
         // Logo size
@@ -161,7 +161,7 @@ public class PdfGenerationService {
             document.addPage(page);
 
             // Load image from URL
-            String logoUrl = "https://yourstrategic.imgix.net/2017/04/Extreme-Networks-Logo.png?fm=png&ixlib=php-3.3.1.png";
+            String logoUrl = "https://www.google.com/imgres?q=wifi%20image&imgurl=https%3A%2F%2Fimages.ctfassets.net%2Faoyx73g9h2pg%2F6bjYp5iN3rqPeVqhgJkZ7C%2Fd6dc91b1f03a1f204e0a014ee594bf4e%2F1gOt7F1sy2USrKYc9QmEauPLV8H1kjVVL_2-Featured-1024x572.jpg%3Fw%3D3840%26q%3D100&imgrefurl=https%3A%2F%2Fwww.cbtnuggets.com%2Fblog%2Ftechnology%2Fnetworking%2Fare-wifi-extenders-worth-it&docid=SQinmIvd1CCwbM&tbnid=Enj-vz-YYYuz1M&vet=12ahUKEwi1oI7M-YKOAxUDlK8BHffIDBQQM3oECGYQAA..i&w=1024&h=572&hcb=2&ved=2ahUKEwi1oI7M-YKOAxUDlK8BHffIDBQQM3oECGYQAA";
             URL url = new URL(logoUrl);
             InputStream inputStream = url.openStream();
 
